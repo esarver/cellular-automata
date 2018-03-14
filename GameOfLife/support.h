@@ -1,13 +1,6 @@
 #ifndef SUPPORT_H
 #define SUPPORT_H
 
-enum Directions {
-    NORTH   = 0b0001,
-    EAST    = 0b0010,
-    SOUTH   = 0b0100,
-    WEST    = 0b1000
-};
-
 typedef struct direction_t {
     unsigned char north : 1;
     unsigned char east : 1;

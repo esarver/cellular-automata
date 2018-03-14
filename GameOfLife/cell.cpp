@@ -12,20 +12,14 @@ Cell::Cell(DNA dna, Behavior behavior){
     _age = 0;
 }
 
-Cell::GenerateRandomDna(){
-    _dna->age_of_reproduction = qrand() % UCHAR_MAX;
-    _dna->appearance = qrand() % UCHAR_MAX;
-    _dna->curiosity = qrand() % UCHAR_MAX;
-    _dna->fearfullness = qrand() % UCHAR_MAX;
-    _dna->intelligence = qrand() % UCHAR_MAX;
-    _dna->lifespan = qrand() % UCHAR_MAX;
-    _dna->movement_speed = qrand() % UCHAR_MAX;
-    _dna->size = 1; //qrand() % UCHAR_MAX;
-    _dna->tolerance = qrand() % UCHAR_MAX;
+void Cell::GenerateRandomDna(){
+    uint64_t temp_dna = qrand() % (UINT64_MAX);
+
+    _dna = (DNA*)&temp_dna; //pointer cast to DNA* from uint64_t
 }
 
-Cell::GenerateRandomBehaviors(){
-    _behavior->direction = qrand() % UCHAR_MAX;
-    _behavior->learned = qrand() % UCHAR_MAX;
-    _behavior->opinion = qrand() % UCHAR_MAX;
+void Cell::GenerateRandomBehaviors(){
+    uint32_t temp_behavior = qrand() % (UINT32_MAX);
+
+    _behavior = (Behavior*)&temp_behavior;//pointer cast to Behavior* from uint32_t
 }

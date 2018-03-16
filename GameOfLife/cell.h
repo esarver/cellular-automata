@@ -9,6 +9,10 @@ class Cell: public QObject
 {
     Q_OBJECT
 public:
+    //TODO: Make these protected
+    DNA * _dna;
+    Behavior * _behavior;
+
     /**
      * @brief Constructs a new cell with random DNA and Behavior.
      */
@@ -35,23 +39,23 @@ public slots:
     /**
      * @brief Mutates the DNA and behavior of this cell.
      */
-    void Mutate();
+//    void Mutate();
 
     /**
      * @brief Mutates the DNA of this cell using the given function.
      * @param mutateFunction - pointer to function to act upon dna. Must take _dna pointer as argument.
      */
-    void Mutate(void* mutateFunction);
+//    void Mutate(void* mutateFunction);
 
     /**
      * @brief Cell decides which way to move this turn.
      */
-    void Move(); //TODO - set a mutex.
+//    void Move(); //TODO - set a mutex.
 
     /**
      * @brief Does all possible actions for this cell.
      */
-    void TakeTurn(); //TODO - set a mutex?
+//    void TakeTurn(); //TODO - set a mutex?
 
 
 
@@ -59,8 +63,8 @@ private:
     void GenerateRandomDna();
     void GenerateRandomBehaviors();
 
-    DNA * _dna;
-    Behavior * _behavior;
+//    DNA * _dna;
+//    Behavior * _behavior;
 
     long _age;
 };

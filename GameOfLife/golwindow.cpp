@@ -4,13 +4,15 @@
 
 #include "./golwindow.h"
 #include "./golboard.h"
+#include "world.h"
 
 GolWindow::GolWindow() {
     board = new GolBoard;
+    world_ = World::GetInstance();
     sidebar = new QWidget;
     scrollArea = new QScrollArea;
     scrollArea->setWidget(board);
-    scrollArea->setWidgetResizable(false);
+    scrollArea->setWidgetResizable(true);
     setMinSizeScrollArea();
 
     /* Controls */
@@ -130,14 +132,15 @@ void GolWindow::createStatsBox(QGroupBox *statsBox) {
 void GolWindow::createSignals() {
     connect(startBtn, &QPushButton::clicked, board, &GolBoard::start);
     connect(pauseBtn, &QPushButton::clicked, board, &GolBoard::pause);
-    connect(populateBtn, &QPushButton::clicked, board, &GolBoard::populate);
+    connect(populateBtn, &QPushButton::clicked, world_, &World::populateWorld);
+    connect(board, &GolBoard::populate, world_, &World::populateWorld);
     connect(clearBtn, &QPushButton::clicked, board, &GolBoard::reset);
     connect(speedSlider, &QSlider::valueChanged, board, &GolBoard::setTimeoutTime);
     connect(speedSlider, &QSlider::valueChanged, this, &GolWindow::changeSliderLabel);
     /* new connect syntax doesn't work with overloaded methods, using old one*/
-    connect(popRatioBox, SIGNAL(valueChanged(int)), board, SLOT(setPopRatio(int)));
+    connect(popRatioBox, SIGNAL(valueChanged(int)), world_, SLOT(setPopRatio(int)));
 
-    connect(board, &GolBoard::changeLabel, this, &GolWindow::changeLabel);
+    connect(world_, &World::changeLabel, this, &GolWindow::changeLabel);
     connect(board, &GolBoard::checkPauseBtn, this, &GolWindow::checkPauseBtn);
     connect(board, &GolBoard::setMinSizeScrollArea, this, &GolWindow::setMinSizeScrollArea);
     connect(board, &GolBoard::justifyBoardZoom, this, &GolWindow::justifyBoardZoom);

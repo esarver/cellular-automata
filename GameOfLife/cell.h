@@ -4,14 +4,14 @@
 #include <QtCore>
 
 #include "support.h"
+#include "sitemodifier.h"
 
 class Cell: public QObject
 {
     Q_OBJECT
 public:
     //TODO: Make these protected
-    DNA * _dna;
-    Behavior * _behavior;
+
 
     /**
      * @brief Constructs a new cell with random DNA and Behavior.
@@ -63,10 +63,10 @@ private:
     void GenerateRandomDna();
     void GenerateRandomBehaviors();
 
-//    DNA * _dna;
-//    Behavior * _behavior;
+    DNA * _dna;
+    Behavior * _behavior;
 
-    long _age;
+    long age_;
 };
 
 #endif // CELL_H

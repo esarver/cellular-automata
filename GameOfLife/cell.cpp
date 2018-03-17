@@ -9,7 +9,7 @@ Cell::Cell()
 Cell::Cell(DNA dna, Behavior behavior){
     _dna = &dna;
     _behavior = &behavior;
-    _age = 0;
+    age_ = 0;
 }
 
 void Cell::GenerateRandomDna(){

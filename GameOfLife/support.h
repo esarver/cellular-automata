@@ -1,6 +1,12 @@
 #ifndef SUPPORT_H
 #define SUPPORT_H
 
+enum ModifierType{
+    FOOD,
+    POISON,
+    TAINTED_FOOD
+};
+
 typedef struct direction_t {
     unsigned char north : 1;
     unsigned char east : 1;

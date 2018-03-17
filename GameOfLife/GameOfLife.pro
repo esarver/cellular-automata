@@ -10,7 +10,10 @@ TEMPLATE = app
 SOURCES += main.cpp \
     golwindow.cpp \
     golboard.cpp \
-    cell.cpp
+    cell.cpp \
+    world.cpp \
+    gridsite.cpp \
+    sitemodifier.cpp
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which as been marked deprecated (the exact warnings
@@ -27,4 +30,7 @@ HEADERS += \
     golwindow.h \
     golboard.h \
     cell.h \
-    support.h
+    support.h \
+    world.h \
+    gridsite.h \
+    sitemodifier.h

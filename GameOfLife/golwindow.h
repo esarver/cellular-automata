@@ -3,6 +3,7 @@
 
 #include <QFrame>
 #include <QWidget>
+#include "world.h"
 
 class GolBoard;
 class QGroupBox;
@@ -29,6 +30,7 @@ public slots:
 
  private:
     GolBoard *board;
+    World *world_;
     QLabel *aliveCellsLabel;
     QLabel *iterationLabel;
     QLabel *speedLabel;

@@ -16,7 +16,7 @@ GolBoard::GolBoard(QWidget *parent) : QFrame(parent) {
     iteration = 0;
     timeoutTime = 25;
     popRatio = 0.4f;
-    populate();
+    emit populate();
 }
 
 int GolBoard::countAliveCells() {
@@ -49,8 +49,6 @@ void GolBoard::iterate() {
     grid = tmp_grid;
 
     iteration++;
-    emit changeLabel("iterationLabel", tr("Iterations: %1").arg(iteration));
-    emit changeLabel("aliveCellsLabel", tr("Alive cells: %1").arg(countAliveCells()));
 }
 
 void GolBoard::mouseMoveEvent(QMouseEvent *event) {
@@ -73,7 +71,6 @@ void GolBoard::mousePressEvent(QMouseEvent *event) {
         } else {
           grid[idx] = 1;
         }
-        emit changeLabel("aliveCellsLabel", tr("Alive cells: %1").arg(countAliveCells()));
         update();
     }
 }
@@ -140,17 +137,6 @@ void GolBoard::pause() {
     update();
 }
 
-void GolBoard::populate() {
-    grid.clear();
-    iteration = 0;
-    for (int i = 0; i < boardWidth*boardHeight; i++) {
-        grid << (rand() < popRatio * static_cast<double>(RAND_MAX + 1.0));
-    }
-    emit changeLabel("iterationLabel", tr("Iterations: %1").arg(iteration));
-    emit changeLabel("aliveCellsLabel", tr("Alive cells: %1").arg(countAliveCells()));
-    update();
-}
-
 void GolBoard::reset() {
     grid.clear();
     for (int i = 0; i < boardWidth*boardHeight; i++) {
@@ -159,8 +145,7 @@ void GolBoard::reset() {
     isPaused = true;
     timer.stop();
     iteration = 0;
-    emit changeLabel("iterationLabel", tr("Iterations: %1").arg(iteration));
-    emit changeLabel("aliveCellsLabel", tr("Alive cells: %1").arg(countAliveCells()));
+
     emit checkPauseBtn();
     update();
 }

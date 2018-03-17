@@ -6,6 +6,7 @@
 #include <QFrame>
 #include <vector>
 
+#include "world.h"
 
 class GolBoard : public QFrame {
   Q_OBJECT
@@ -16,7 +17,7 @@ class GolBoard : public QFrame {
 
  public slots:
     void pause();
-    void populate();
+
     void reset();
     void setBoardSize(int w, int h);
     void setPopRatio(int value);
@@ -24,7 +25,8 @@ class GolBoard : public QFrame {
     void start();
 
  signals:
-    void changeLabel(QString, QString);
+    //void changeLabel(QString, QString);
+    void populate();
     void checkPauseBtn();
     void justifyBoardZoom(int x, int y);
     void setMinSizeScrollArea();
@@ -37,6 +39,7 @@ class GolBoard : public QFrame {
     void wheelEvent(QWheelEvent *event);
 
  private:
+    World * world_;
     int boardHeight;
     int boardWidth;
     int cellsize;

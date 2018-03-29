@@ -24,20 +24,36 @@ void World::Init(){
     height_ = 100;
     width_ = 100;
     popRatio_ = 40;
-    map_ = QVector<GridSite*>(width_ * height_);
+    map_ = QVector<GridSite*>();
+}
+
+void World::updateAliveCounter(){
+    long aliveCellCount = 0;
+    qDebug("Number Map Elements: %d", map_.count());
+    foreach(GridSite * site, map_){
+        if(site->isCell()){
+            ++aliveCellCount;
+        }
+    }
+    
+    emit changeLabel("aliveCellsLabel", tr("Alive cells: %1").arg(aliveCellCount));
 }
 
 void World::populateWorld(){
     //TODO - modifierRatio
-    foreach(GridSite *site,  map_){
+    Init();
+    for(int i = 0; i < (width_ * height_); i++){
+        GridSite *newSite = new GridSite();
+        
         int rnd = qrand() % (101);
 
         if(rnd < popRatio_){
-            site->addCell(new Cell());
+            newSite->addCell(new Cell());
         }
+        map_.append(newSite);
     }
     emit changeLabel("iterationLabel", tr("Iterations: %1").arg(iteration_));
-    emit changeLabel("aliveCellsLabel", tr("Alive cells: %1").arg("NOT IMPLEMENTED"));
+    updateAliveCounter();
 }
 
 void World::setPopRatio(int ratio){

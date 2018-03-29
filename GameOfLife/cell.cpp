@@ -2,6 +2,10 @@
 
 Cell::Cell()
 {
+    _dna = new DNA;
+    _behavior = new Behavior;
+    age_ = 0;
+    
     GenerateRandomDna();
     GenerateRandomBehaviors();
 }
@@ -13,13 +17,17 @@ Cell::Cell(DNA dna, Behavior behavior){
 }
 
 void Cell::GenerateRandomDna(){
-    uint64_t temp_dna = qrand() % (UINT64_MAX);
+    uint64_t rnd = qrand() % (UINT64_MAX);
 
-    _dna = (DNA*)&temp_dna; //pointer cast to DNA* from uint64_t
+    DNA *temp_dna = (DNA*)&rnd;
+    
+    *_dna = *temp_dna; //pointer cast to DNA* from uint64_t
 }
 
 void Cell::GenerateRandomBehaviors(){
-    uint32_t temp_behavior = qrand() % (UINT32_MAX);
+    uint32_t rnd = qrand() % (UINT32_MAX);
 
-    _behavior = (Behavior*)&temp_behavior;//pointer cast to Behavior* from uint32_t
+    Behavior *temp_behavior = (Behavior*)&rnd;
+    
+    *_behavior = *temp_behavior;//pointer cast to Behavior* from uint32_t
 }

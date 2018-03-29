@@ -2,6 +2,7 @@
 #define GRIDSITE_H
 
 #include <QObject>
+
 #include "cell.h"
 
 class GridSite : public QObject
@@ -28,6 +29,8 @@ public slots:
      * @param new_cell
      */
     void addCell(Cell * new_cell);
+    
+    bool isCell();
 
 private:
     Cell *cell_;

@@ -20,6 +20,8 @@ signals:
 public slots:
 
    void populateWorld();
+   
+   void updateAliveCounter();
 
    void setPopRatio(int ratio);
 
